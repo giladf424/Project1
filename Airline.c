@@ -1,5 +1,5 @@
 #include "Airline.h"
-
+//omer
 void initAirline(Airline* airline) {
     char* name = initAirlineName();
     airline->name = name;
