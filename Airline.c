@@ -10,6 +10,8 @@ void initAirline(Airline* airline) {
 
 }
 
+//hi from ubuntu
+
 char* initAirlineName() {
     char name[MAX_LENGTH] = { 0 };
     printf(" Enter Airline name    \n");
