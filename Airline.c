@@ -16,7 +16,7 @@ char* initAirlineName() {
     myGets(name, MAX_LENGTH);
     char* rname = malloc(strlen(name));
     strcpy(rname, name);
-    //he
+    //hey
 
     return rname;
 }
