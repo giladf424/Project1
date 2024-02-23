@@ -1,8 +1,7 @@
-#pragma once
 #ifndef DATE
 #define DATE
 
-static int const monthDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+static int const monthDays[12]  = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 typedef struct {
     int day;

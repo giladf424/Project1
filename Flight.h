@@ -1,4 +1,3 @@
-#pragma once
 #ifndef FILGHT
 #define FILGHT
 #include <string.h>
@@ -23,11 +22,12 @@ int isFlightToDestAirport(const Flight* f, char* destCode);
 
 int isPlaneTypeInFlight(const Flight* f, planeType type);
 
-int getAirportsForFlight(Flight* f, AirportManager* apm);
-
 void printFlight(Flight* const f);
 
 void freeFlight(Flight* f);
 
-void tempFunction(Flight* f, AirportManager* apm);
+int getSourceAirport(Flight* f, AirportManager* apm);
+
+int getDestAirport(Flight* f, AirportManager* apm);
+
 #endif // !FILGHT

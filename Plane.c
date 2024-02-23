@@ -4,6 +4,7 @@ void initPlane(Plane* p, Plane* planeArr, int s) {
     p->serialNum = getPlaneSN(planeArr, s);
     printf("\n");
     p->type = getPlaneType();
+    printf("\n");
 }
 
 int getPlaneSN(Plane* planeArr, int s) {
@@ -20,6 +21,7 @@ int getPlaneSN(Plane* planeArr, int s) {
 int isSerialNumUnique(Plane* planeArr, int sn, int s) {
     for (int i = 0; i < s; i++) {
         if (planeArr[i].serialNum == sn)
+            printf("There is already a plane with the number you selected, please choose another number.");
             return 0;
     }
     return 1;
@@ -34,11 +36,12 @@ planeType getPlaneType() {
         }
 
         scanf("%d", &type);
+        if (type < 0 || type > 2)
+            printf("Wrong number , please try again.");
     } while (type < 0 || type > 2);
     return type;
 }
 
-void printPlane(Plane* const p) {
-    printf("\nPlane: serial number:%d, type: %s", p->serialNum, planeTypeStr[p->type]);
+void printPlane(const Plane* p) {
+    printf("Plane: serial number:%d, type %s", p->serialNum, planeTypeStr[p->type]);
 }
-

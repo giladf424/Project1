@@ -1,12 +1,9 @@
-#pragma once
 #ifndef GENERALFUNCTIONS
 #define  GENERALFUNCTIONS
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #define MAX_LENGTH 255
-
-char* getDynamicStr(char* s);
 
 char* rmWhiteSpace(char* name);
 

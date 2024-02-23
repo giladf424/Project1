@@ -1,5 +1,4 @@
 #include "Airport.h"
-#include "generalFunctions.h"
 
 Airport* initAirport(Airport* airport) {
     airport = (Airport*)malloc(sizeof(Airport));
@@ -11,10 +10,9 @@ Airport* initAirport(Airport* airport) {
 }
 
 void getAirportCode(char* airportCode) {
-    const int expectedLength = 3;
     do {
-        printf("Enter airport code - %d UPPER CASE letters\n",
-            expectedLength);
+        printf("Enter airport code  - %d UPPER CASE letters      \n", CODE);
+        int expectedLength = CODE;
 
         char inputBuffer[MAX_LENGTH];
         myGets(inputBuffer, MAX_LENGTH);
@@ -52,7 +50,7 @@ void getAirportName(Airport* port) {
 
     char* rname = makeNameAirporti(name);
 
-    port->name = _strdup(rname);
+    port->name = strdup(rname);
 }
 
 char* makeNameAirporti(char* name) {
@@ -79,7 +77,8 @@ char* makeSpacesAndNameGood(char* formatName, int wc) {
             sc++;
         }
     }
-    char* res = malloc(strlen(formatName) + sc);
+    size_t size = (unsigned long)((int)strlen(formatName) + sc);
+    char* res = malloc(size);
     for (int i = 0, j = 0; i < (int)strlen(formatName); i++) {
         if (*(formatName + i) == ' ' && *(formatName + i - 1) != ' ') {
             *(res + j) = ' ';
@@ -101,7 +100,7 @@ char* makeSpacesAndNameGood(char* formatName, int wc) {
 }
 
 void getAirportCountry(Airport* port) {
-    printf("Enter Airport country\n");
+    printf("Enter airport country   \n");
     char name[MAX_LENGTH];
     myGets(name, MAX_LENGTH);
     char* rname = malloc(strlen(name));
@@ -110,7 +109,7 @@ void getAirportCountry(Airport* port) {
 }
 
 void printAirport(Airport const* port) {
-    printf("\nAirport name:%-26s Country: %-26s Code:%-26s  \n", port->name, port->country, port->code);
+    printf("Airport name:%-26s Country: %-26s Code:%s\n", port->name, port->country, port->code);
 }
 
 void freeAirport(Airport* port) {

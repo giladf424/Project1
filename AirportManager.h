@@ -1,12 +1,11 @@
-#pragma once
 #ifndef AIRPORTMANAGER
 #define AIRPORTMANAGER
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include "Airport.h"
 #include "Plane.h"
-#include <stdio.h>
 #include "Date.h"
-#include <string.h>
 
 typedef struct {
     Airport** theAirports;

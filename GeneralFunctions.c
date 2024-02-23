@@ -1,4 +1,4 @@
-#include "generalFunctions.h"
+#include "GeneralFunctions.h"
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
@@ -34,7 +34,7 @@ char* cleanWhiteSpaceEdges(char* str) {
 char* addUnderlines(char* formatName) {
     int l = (int)strlen(formatName) * 2 - 1;
     formatName = realloc(formatName, l);
-    for (int i = (int )strlen(formatName) - 1, j = l - 1; i >= 0; j--, i--) {
+    for (int i = (int)strlen(formatName) - 1, j = l - 1; i >= 0; j--, i--) {
         *(formatName + j) = (*(formatName + i) >= 97) ? *(formatName + i) - 32 : *(formatName + i);
         j--;
         *(formatName + j) = '_';

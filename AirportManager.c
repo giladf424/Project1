@@ -41,6 +41,7 @@ void printAirports(AirportManager* const apm) {
     printf("there are %d airports\n", apm->numOfAirports);
     for (int i = 0; i < apm->numOfAirports; i++) {
         printAirport(apm->theAirports[i]);
+        printf("\n");
     }
 }
 
@@ -59,4 +60,3 @@ Airport* findAirportByCode(AirportManager* apm, char* code) {
     }
     return NULL;
 }
-

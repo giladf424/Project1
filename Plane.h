@@ -1,4 +1,3 @@
-#pragma once
 #ifndef PLANE
 #define PLANE
 #include <stdio.h>
@@ -23,6 +22,5 @@ planeType getPlaneType();
 
 void printPlane(Plane* const p);
 
-char* PlaneTypeStr();
 
 #endif // !Plane

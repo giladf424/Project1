@@ -1,4 +1,3 @@
-#pragma once
 #ifndef AIRLINE
 #define AIRLINE
 #include <stdio.h>
@@ -26,6 +25,8 @@ int addPlane(Airline* airline);
 
 void printPlanesArr(Plane* planes, int planeCount);
 
+void printFlights(Flight** flights, int flightCount);
+
 void printAirline(Airline* const airline);
 
 void freeCompany(Airline* airline);
@@ -41,4 +42,3 @@ int addFlight(Airline* airline, AirportManager* apm);
 void doPrintFlightsWithPlaneType(Airline* const airline);
 
 #endif // !AIRLINE
-

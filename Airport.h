@@ -1,12 +1,11 @@
-#pragma once
 #ifndef AIRPORT
 #define AIRPORT
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-#include "generalFunctions.h"
 #include <stdlib.h>
 #include <ctype.h>
+#include "GeneralFunctions.h"
 #define CODE 3
 
 typedef struct {
