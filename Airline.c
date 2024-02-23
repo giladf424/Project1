@@ -1,5 +1,5 @@
 #include "Airline.h"
-//omer
+
 void initAirline(Airline* airline) {
     char* name = initAirlineName();
     airline->name = name;
@@ -16,6 +16,7 @@ char* initAirlineName() {
     myGets(name, MAX_LENGTH);
     char* rname = malloc(strlen(name));
     strcpy(rname, name);
+    //he
 
     return rname;
 }
