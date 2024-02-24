@@ -64,9 +64,9 @@ int main()
 			break;
 
 		case 7:
+			printf("Bye Bye");
 			freeCompany(&airline);
 			freeManager(&apm);
-			printf("Bye Bye");
 			break;
 		}
 	} while (opt != 7);

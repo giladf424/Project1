@@ -56,7 +56,7 @@ void getAirportName(Airport* port) {
 }
 
 char* makeNameAirporti(char* name) {
-    char* formatName = (char*)malloc(strlen(name));
+    char* formatName = (char*)malloc(strlen(name)*sizeof(char));
     if (!formatName)
         return NULL;
     strcpy(formatName, name);
@@ -75,14 +75,8 @@ char* makeNameAirporti(char* name) {
 
 char* makeSpacesAndNameGood(char* formatName, int wc) {
     int isEven = wc % 2;
-    int sc = 0;
-    for (int i = 0; i < (int)strlen(formatName); i++) {
-        if (*(formatName + i) == ' ') {
-            sc++;
-        }
-    }
-    size_t size = (unsigned long)((int)strlen(formatName) + sc);
-    char* res = (char*)malloc(size);
+
+    char* res = (char*)malloc((MAX_LENGTH + 1) * sizeof(char));
     if (!res)
         return NULL;
     for (int i = 0, j = 0; i < (int)strlen(formatName); i++) {
@@ -94,26 +88,28 @@ char* makeSpacesAndNameGood(char* formatName, int wc) {
         else if (*(formatName + i) != ' ') {
             *(res + j) = ((*(formatName + i - 1) == ' ' || i == 0) &&
                 *(formatName + i) >= 97)
-                ? *(formatName + i) - 32
+                ? (*(formatName + i) - 32)
                 : *(formatName + i);
             j++;
         }
     }
-    *(res + strlen(res)) = '\0';
-    formatName = (char*)realloc(res, strlen(res));
+    *(res + strlen(formatName) + 1) = '\0';
+    formatName = (char*)realloc(res, strlen(res) * sizeof(char));
     if (!formatName)
         return NULL;
 
     return formatName;
+
 }
 
 void getAirportCountry(Airport* port) {
+    char* rname;
     printf("Enter airport country   \n");
     char name[MAX_LENGTH];
     myGets(name, MAX_LENGTH);
-    char* rname = (char*)malloc(strlen(name));
+    rname = (char*)malloc((strlen(name) +1)*sizeof(char));
     if (!rname)
-        return NULL;
+        return;
     strcpy(rname, name);
     port->country = rname;
 }

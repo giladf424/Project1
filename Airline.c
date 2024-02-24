@@ -17,10 +17,11 @@ void initAirline(Airline* airline) {
 }
 
 char* initAirlineName() {
+    char* rname;
     char name[MAX_LENGTH];
     printf("Enter Airline name\n");
     myGets(name, MAX_LENGTH);
-    char* rname = (char*)malloc(strlen(name));
+    rname = (char*)malloc((strlen(name) +1)*sizeof(char));
     if (!rname)
         return NULL;
     strcpy(rname, name);
@@ -130,4 +131,5 @@ void doPrintFlightsWithPlaneType(const Airline* airline) {
             printFlight(airline->flights[i]);
         }
     }
+    printf("\n");
 }

@@ -4,14 +4,20 @@
 #include <stdlib.h>
 
 int getCorrectDate(Date* d) {
-    int day, month, year, s;
+    int day, month, year, check;
     char date[MAX_LENGTH];
     do {
+        check = 1;
         printf("Enter Flight Date dd##mm##yyyy  minimum year 2023\n");
         myGets(date, MAX_LENGTH);
         //s = (int)strlen(date);
         sscanf(date, "%d##%d##%d", &day, &month, &year);
-    } while (checkDate(day, month, year) == 0);
+        if (date[2] != '#' || date[3] != '#' || date[6] != '#' || date[7] != '#')
+        {
+            printf("Error try again\n");
+            check = 0;
+        }
+    } while (check == 0 || checkDate(day, month, year) == 0);
 
     d->day = day;
     d->month = month;
