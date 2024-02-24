@@ -2,42 +2,49 @@
 #include <stdlib.h>
 #include <string.h>
 
-Airline* initAirline(Airline* airline) {
-    char* name = initAirlineName();
+void initAirline(Airline* airline) {
+    char* name;
+    do
+    {
+        name = initAirlineName();
+    } while (!name);
     airline->name = name;
     airline->planeArr = NULL;
     airline->flights = NULL;
     airline->planeCount = 0;
     airline->flightCount = 0;
 
-    return airline;
 }
 
 char* initAirlineName() {
     char name[MAX_LENGTH];
     printf("Enter Airline name\n");
     myGets(name, MAX_LENGTH);
-    char* rname = malloc(strlen(name));
+    char* rname = (char*)malloc(strlen(name));
+    if (!rname)
+        return NULL;
     strcpy(rname, name);
 
     return rname;
 }
 
 int addPlane(Airline* airline) {
+    airline->planeArr = (Plane*)realloc(airline->planeArr, (airline->planeCount + 1) * sizeof(Plane));
+    if (!airline->planeArr)
+        return 0;
+    initPlane(&airline->planeArr[airline->planeCount], airline->planeArr, airline->planeCount);
     airline->planeCount++;
-    airline->planeArr = realloc(airline->planeArr, airline->planeCount * sizeof(Plane));
-    initPlane(&airline->planeArr[airline->planeCount - 1], airline->planeArr, airline->planeCount);
     return 1;
 }
 
-void printPlanesArr(Plane* planeArr, int s) {
+void printPlanesArr(const Plane* planeArr, int s) {
     for (int i = 0; i < s; i++) {
         printPlane(&planeArr[i]);
         printf("\n");
     }
 }
 
-void printFlights(Flight** flights, int flightCount) {
+void printFlights(const Flight** flights, int flightCount) {
     for (int i = 0; i < flightCount; i++) {
         printFlight(flights[i]);
         printf("\n");
@@ -50,6 +57,7 @@ void freeCompany(Airline* airline) {
     for (int i = 0; i < airline->flightCount; i++) {
         free(airline->flights[i]);
     }
+    free(airline->flights);
 }
 
 Plane* findPlane(Airline* airline) {
@@ -60,7 +68,7 @@ Plane* findPlane(Airline* airline) {
     Plane* p = NULL;
     do {
         myGets(sn, MAX_LENGTH);
-        for (int i = 1; i < (int)strlen(sn); i++) {
+        for (int i = 0; i < (int)strlen(sn); i++) {
             if (!isdigit(sn[i])) {
                 printf("Invalid input! Try again!\n");
                 return NULL;
@@ -81,7 +89,7 @@ Plane* findPlaneBySn(Airline* airline, int sn) {
     return NULL;
 }
 
-void printCompany(Airline* const airline) {
+void printCompany(const Airline* airline) {
     printf("\nAirline %s\n", airline->name);
     printf(" -------- Has %d planes\n", airline->planeCount);
     printPlanesArr(airline->planeArr, airline->planeCount);
@@ -99,18 +107,22 @@ int addFlight(Airline* airline, AirportManager* apm) {
         return 0;
     }
     else {
-        Flight* f = malloc(sizeof(Flight));
+        Flight* f = (Flight*)malloc(sizeof(Flight));
+        if (!f)
+            return 0;
         Plane* p = findPlane(airline);
         printAirports(apm);
         initFlight(f, p, apm);
+        airline->flights = (Flight**)realloc(airline->flights, (airline->flightCount +1) * sizeof(Flight*));
+        if (!airline->flights)
+            return 0;
+        airline->flights[airline->flightCount] = f;
         airline->flightCount++;
-        airline->flights = realloc(airline->flights, airline->flightCount * sizeof(Flight*));
-        airline->flights[airline->flightCount - 1] = f;
     }
     return 1;
 }
 
-void doPrintFlightsWithPlaneType(Airline* const airline) {
+void doPrintFlightsWithPlaneType(const Airline* airline) {
     planeType type = getPlaneType();
     printf("\nFlights with plane type %s:\n", planeTypeStr[type]);
     for (int i = 0; i < airline->flightCount; i++) {

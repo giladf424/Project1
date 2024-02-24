@@ -4,11 +4,12 @@
 #include <stdlib.h>
 
 int getCorrectDate(Date* d) {
-    int day, month, year;
+    int day, month, year, s;
     char date[MAX_LENGTH];
     do {
         printf("Enter Flight Date dd##mm##yyyy  minimum year 2023\n");
         myGets(date, MAX_LENGTH);
+        //s = (int)strlen(date);
         sscanf(date, "%d##%d##%d", &day, &month, &year);
     } while (checkDate(day, month, year) == 0);
 
@@ -21,7 +22,7 @@ int getCorrectDate(Date* d) {
 
 int checkDate(int d, int m, int y) {
     int isNotCorrectDate =
-        (m < 1 || m > 12) || (d < 1 || d > monthDays[m - 1]) || (y < 2023 || y > 9999);
+        (d < 1 || d > monthDays[m - 1])  || (m < 1 || m > 12) || (y < 2023 || y > 9999);
 
     if (isNotCorrectDate) {
         printf("Error try again\n");
@@ -31,6 +32,6 @@ int checkDate(int d, int m, int y) {
     return 1;
 }
 
-void printDate(Date* d) {
+void printDate(const Date* d) {
     printf("Date: %02d/%02d/%04d", d->day, d->month, d->year);
 }

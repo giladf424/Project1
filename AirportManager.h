@@ -18,9 +18,9 @@ int addAirport(AirportManager* apm);
 
 void freeManager(AirportManager* apm);
 
-void printAirports(AirportManager* const apm);
+void printAirports(const AirportManager* apm);
 
-int isAirportCodeInUse(char* code, AirportManager* const apm);
+int isAirportCodeInUse(char* code, const AirportManager* apm);
 
 Airport* findAirportByCode(AirportManager* apm, char* code);
 

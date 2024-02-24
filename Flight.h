@@ -22,7 +22,7 @@ int isFlightToDestAirport(const Flight* f, char* destCode);
 
 int isPlaneTypeInFlight(const Flight* f, planeType type);
 
-void printFlight(Flight* const f);
+void printFlight(const Flight* f);
 
 void freeFlight(Flight* f);
 

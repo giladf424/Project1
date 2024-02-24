@@ -21,8 +21,10 @@ int getPlaneSN(Plane* planeArr, int s) {
 int isSerialNumUnique(Plane* planeArr, int sn, int s) {
     for (int i = 0; i < s; i++) {
         if (planeArr[i].serialNum == sn)
+        {
             printf("There is already a plane with the number you selected, please choose another number.");
             return 0;
+        }
     }
     return 1;
 }

@@ -13,7 +13,7 @@ int getCorrectDate(Date* d);
 
 int checkDate(int d, int m, int y);
 
-void printDate(Date* d);
+void printDate(const Date* d);
 
 
 #endif // !DATE

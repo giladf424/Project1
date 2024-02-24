@@ -8,6 +8,8 @@ void initManager(AirportManager* apm) {
 
 int addAirport(AirportManager* apm) {
     Airport* port = (Airport*)malloc(sizeof(Airport));
+    if (!port)
+        return 0;
     int isCodeInUse;
     do {
         getAirportCode(port->code);
@@ -16,19 +18,17 @@ int addAirport(AirportManager* apm) {
             printf("This code already in use - enter a different code\n");
     } while (isCodeInUse);
     port = initAirportNoCode(port);
-    apm->numOfAirports++;
+    
     apm->theAirports =
-        realloc(apm->theAirports, (apm->numOfAirports) * sizeof(Airport*));
-    apm->theAirports[apm->numOfAirports - 1] = port;
-    apm->theAirports =
-        realloc(apm->theAirports, (apm->numOfAirports) * sizeof(Airport*));
-
-    if (!(port))
+        (Airport**)realloc(apm->theAirports, (apm->numOfAirports +1) * sizeof(Airport*));
+    if (!apm->theAirports)
         return 0;
+    apm->theAirports[apm->numOfAirports] = port;
+    apm->numOfAirports++;
     return 1;
 }
 
-int isAirportCodeInUse(char* code, AirportManager* const apm) {
+int isAirportCodeInUse(char* code, const AirportManager* apm) {
     for (int i = 0; i < apm->numOfAirports; i++) {
         if (strcmp(apm->theAirports[i]->code, code) == 0) {
             return 1;
@@ -37,7 +37,7 @@ int isAirportCodeInUse(char* code, AirportManager* const apm) {
     return 0;
 }
 
-void printAirports(AirportManager* const apm) {
+void printAirports(const AirportManager* apm) {
     printf("there are %d airports\n", apm->numOfAirports);
     for (int i = 0; i < apm->numOfAirports; i++) {
         printAirport(apm->theAirports[i]);

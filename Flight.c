@@ -61,11 +61,14 @@ int isPlaneTypeInFlight(const Flight* f, planeType type) {
     return f->plane.type == type;
 }
 
-void printFlight(Flight* const f) {
+void printFlight(const Flight* f) {
     printf("Flight From %s To %s  ", f->origin, f->destination);
     printDate(&(f->date));
     printf("  ");
     printPlane(&(f->plane));
 }
 
-void freeFlight(Flight* f) { free(f); }
+void freeFlight(Flight* f)
+{ 
+    free(f);
+}

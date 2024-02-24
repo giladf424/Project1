@@ -23,11 +23,9 @@ char* initAirlineName();
 
 int addPlane(Airline* airline);
 
-void printPlanesArr(Plane* planes, int planeCount);
+void printPlanesArr(const Plane* planes, int planeCount);
 
-void printFlights(Flight** flights, int flightCount);
-
-void printAirline(Airline* const airline);
+void printFlights(const Flight** flights, int flightCount);
 
 void freeCompany(Airline* airline);
 
@@ -35,10 +33,10 @@ Plane* findPlane(Airline* airline);
 
 Plane* findPlaneBySn(Airline* airline, int sn);
 
-void printCompany(Airline* const airline);
+void printCompany(const Airline* airline);
 
 int addFlight(Airline* airline, AirportManager* apm);
 
-void doPrintFlightsWithPlaneType(Airline* const airline);
+void doPrintFlightsWithPlaneType(const Airline* airline);
 
 #endif // !AIRLINE

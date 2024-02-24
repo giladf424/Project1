@@ -2,6 +2,8 @@
 
 Airport* initAirport(Airport* airport) {
     airport = (Airport*)malloc(sizeof(Airport));
+    if (!airport)
+        return NULL;
     getAirportCode(airport->code);
     getAirportName(airport);
     getAirportCountry(airport);
@@ -11,7 +13,7 @@ Airport* initAirport(Airport* airport) {
 
 void getAirportCode(char* airportCode) {
     do {
-        printf("Enter airport code  - %d UPPER CASE letters      \n", CODE);
+        printf("Enter airport code - %d UPPER CASE letters\n", CODE);
         int expectedLength = CODE;
 
         char inputBuffer[MAX_LENGTH];
@@ -50,11 +52,13 @@ void getAirportName(Airport* port) {
 
     char* rname = makeNameAirporti(name);
 
-    port->name = strdup(rname);
+    port->name = _strdup(rname);
 }
 
 char* makeNameAirporti(char* name) {
-    char* formatName = malloc(strlen(name));
+    char* formatName = (char*)malloc(strlen(name));
+    if (!formatName)
+        return NULL;
     strcpy(formatName, name);
 
     formatName = cleanWhiteSpaceEdges(formatName);
@@ -78,7 +82,9 @@ char* makeSpacesAndNameGood(char* formatName, int wc) {
         }
     }
     size_t size = (unsigned long)((int)strlen(formatName) + sc);
-    char* res = malloc(size);
+    char* res = (char*)malloc(size);
+    if (!res)
+        return NULL;
     for (int i = 0, j = 0; i < (int)strlen(formatName); i++) {
         if (*(formatName + i) == ' ' && *(formatName + i - 1) != ' ') {
             *(res + j) = ' ';
@@ -94,7 +100,9 @@ char* makeSpacesAndNameGood(char* formatName, int wc) {
         }
     }
     *(res + strlen(res)) = '\0';
-    formatName = realloc(res, strlen(res));
+    formatName = (char*)realloc(res, strlen(res));
+    if (!formatName)
+        return NULL;
 
     return formatName;
 }
@@ -103,7 +111,9 @@ void getAirportCountry(Airport* port) {
     printf("Enter airport country   \n");
     char name[MAX_LENGTH];
     myGets(name, MAX_LENGTH);
-    char* rname = malloc(strlen(name));
+    char* rname = (char*)malloc(strlen(name));
+    if (!rname)
+        return NULL;
     strcpy(rname, name);
     port->country = rname;
 }

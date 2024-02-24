@@ -20,7 +20,7 @@ int isSerialNumUnique(Plane* planeArr, int sn, int s);
 
 planeType getPlaneType();
 
-void printPlane(Plane* const p);
+void printPlane(const Plane* p);
 
 
 #endif // !Plane
